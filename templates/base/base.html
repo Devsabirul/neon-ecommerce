@@ -239,7 +239,7 @@
                       <a href="{% url 'my_account' %}">My Account</a>
                     </li>
                     <li>
-                      <a href="faq.html">FAQ</a>
+                      <a href="#">FAQ</a>
                     </li>
                   </ul>
                 </nav>
@@ -263,7 +263,7 @@
             <div class="row">
               <div class="col-lg-4 col-sm-6">
                 <div class="widget widget-about">
-                  <a href="index.html" class="logo-footer">
+                  <a href="#" class="logo-footer">
                     <img
                       src="{% static 'assets/images/logo.png' %}"
                       alt="logo-footer"
@@ -306,10 +306,10 @@
                     Company
                   </h3>
                   <ul class="widget-body">
-                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#">About Us</a></li>
                     <li><a href="#">Team Member</a></li>
                     <li><a href="#">Career</a></li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
                   </ul>
                 </div>
               </div>
@@ -319,10 +319,9 @@
                     My Account
                   </h4>
                   <ul class="widget-body">
-                    <li><a href="cart.html">View Cart</a></li>
-                    <li><a href="login.html">Sign In</a></li>
+                    <li><a href="#">View Cart</a></li>
+                    <li><a href="{% url 'login' %}">Sign In</a></li>
                     <li><a href="#">Help</a></li>
-                    <li><a href="wishlist.html">My Wishlist</a></li>
                   </ul>
                 </div>
               </div>
@@ -430,15 +429,15 @@
 
     <!-- Start of Sticky Footer -->
     <div class="sticky-footer sticky-content fix-bottom">
-      <a href="index.html" class="sticky-link active">
+      <a href="{% url 'HOME' %}" class="sticky-link active">
         <i class="w-icon-home"></i>
         <p>Home</p>
       </a>
-      <a href="shop-fullwidth-banner.html" class="sticky-link">
+      <a href="{% url 'shop_page' %}" class="sticky-link">
         <i class="w-icon-category"></i>
         <p>Shop</p>
       </a>
-      <a href="my-account.html" class="sticky-link">
+      <a href="{% url 'my_account' %}" class="sticky-link">
         <i class="w-icon-account"></i>
         <p>Account</p>
       </a>
@@ -449,71 +448,50 @@
         </a>
         <div class="dropdown-box">
           <div class="products">
-            <div class="product product-cart">
-              <div class="product-detail">
-                <h3 class="product-name">
-                  <a href="#"
-                    >Beige knitted elas<br />tic runner shoes</a
-                  >
-                </h3>
-                <div class="price-box">
-                  <span class="product-quantity">1</span>
-                  <span class="product-price">$25.68</span>
+            {% for cart in cart %}  
+              <div class="product product-cart">
+                <div class="product-detail">
+                  <h3 class="product-name">
+                    <a href="#">
+                      {{cart.product.name}}
+                      </a>
+                  </h3>
+                  <div class="price-box">
+                    <span class="product-quantity">{{cart.quantity}}</span>
+                    <span class="product-price">{{cart.product.price}} tk</span>
+                  </div>
                 </div>
+                <figure class="product-media">
+                  <a href="{% url 'product_details' cart.product.slug %}">
+                    <img
+                      src="{{cart.product.image.url}}"
+                      alt="product"
+                      height="84"
+                      width="94"
+                    />
+                  </a>
+                </figure>
+                <button class="btn btn-link btn-close" aria-label="button">
+                  <a href="{% url 'deleteCart' cart.id %}">
+                    <i class="fas fa-times"></i>
+                  </a>
+                </button>
               </div>
-              <figure class="product-media">
-                <a href="#">
-                  <img
-                    src="{% static 'assets/images/cart/product-1.jpg' %}"
-                    alt="product"
-                    height="84"
-                    width="94"
-                  />
-                </a>
-              </figure>
-              <button class="btn btn-link btn-close" aria-label="button">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
+            {% endfor %}
+            
 
-            <div class="product product-cart">
-              <div class="product-detail">
-                <h3 class="product-name">
-                  <a href="#"
-                    >Blue utility pina<br />fore denim dress</a
-                  >
-                </h3>
-                <div class="price-box">
-                  <span class="product-quantity">1</span>
-                  <span class="product-price">$32.99</span>
-                </div>
-              </div>
-              <figure class="product-media">
-                <a href="#">
-                  <img
-                    src="{% static 'assets/images/cart/product-2.jpg' %}"
-                    alt="product"
-                    width="84"
-                    height="94"
-                  />
-                </a>
-              </figure>
-              <button class="btn btn-link btn-close" aria-label="button">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
           </div>
 
           <div class="cart-total">
             <label>Subtotal:</label>
-            <span class="price">$58.67</span>
+            <span class="price">{{subtotal}}</span>
           </div>
 
           <div class="cart-action">
-            <a href="cart.html" class="btn btn-dark btn-outline btn-rounded"
+            <a href="{% url 'cart' %}" class="btn btn-dark btn-outline btn-rounded"
               >View Cart</a
             >
-            <a href="checkout.html" class="btn btn-primary btn-rounded"
+            <a href="#" class="btn btn-primary btn-rounded"
               >Checkout</a
             >
           </div>
@@ -594,28 +572,23 @@
         <div class="tab-content">
           <div class="tab-pane active" id="categories">
             <ul class="mobile-menu">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="{% url 'HOME' %}">Home</a></li>
               <li>
-                <a href="shop-fullwidth-banner.html">Shop</a>
+                <a href="{% url 'shop_page' %}">Shop</a>
               </li>
               <li>
-                <a href="shop-fullwidth-banner.html">Shop</a>
-              </li>
-              <li>
-                <a href="about-us.html">About us</a>
+                <a href="{% url 'about' %}">About us</a>
               </li>
 
               <li>
-                <a href="checkout.html">Checkout</a>
+                <a href="#">Checkout</a>
+              </li>
+              
+              <li>
+                <a href="{% url 'my_account' %}">My Account</a>
               </li>
               <li>
-                <a href="wishlist.html">Wishlist</a>
-              </li>
-              <li>
-                <a href="my-account.html">My Account</a>
-              </li>
-              <li>
-                <a href="faq.html">FAQ</a>
+                <a href="#">FAQ</a>
               </li>
             </ul>
           </div>

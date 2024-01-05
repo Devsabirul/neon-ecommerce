@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}About Page{% endblock title %}
 {% block body %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.min.css' %}" />
 <!-- Start of Main -->
 <main class="main">
     <!-- Start of Page Header -->
@@ -16,7 +17,7 @@
     <nav class="breadcrumb-nav mb-10 pb-8">
       <div class="container">
         <ul class="breadcrumb">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="{% url 'HOME' %}">Home</a></li>
           <li>About Us</li>
         </ul>
       </div>
@@ -363,4 +364,5 @@
   </main>
   <!-- End of Main -->
 
-{% endblock body %}
+
+  {% endblock body %}

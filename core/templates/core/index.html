@@ -346,7 +346,7 @@
                         <span class="ratings" style="width: 60%"></span>
                         <span class="tooltiptext tooltip-top"></span>
                       </div>
-                      <a href="product-without-sidebar.html" class="rating-reviews">({{popularDepartment.products.review}} Reviews)</a>
+                      <a href="#" class="rating-reviews">({{popularDepartment.products.review}} Reviews)</a>
                     </div>
                     <div class="product-price" style="display: flex; justify-content: space-between">
                       <ins class="new-price">BDT {{popularDepartment.products.price}}</ins>
@@ -387,11 +387,11 @@
                           <span class="ratings" style="width: 60%"></span>
                           <span class="tooltiptext tooltip-top"></span>
                         </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">({{popularDepartment.products.review}} Reviews)</a>
+                        <a href="#" class="rating-reviews">({{popularDepartment.products.review}} Reviews)</a>
                       </div>
                       <div class="product-price" style="display: flex; justify-content: space-between">
                         <ins class="new-price">BDT {{popularDepartment.products.price}}</ins>
-                        <a href="" style="
+                        <a href="{% url 'ADD_TO_CART' popularDepartment.products.id %}" style="
                                   border: 1px solid #336696;
                                   color: #336696;
                                   padding: 0px 5px;
@@ -429,11 +429,11 @@
                           <span class="ratings" style="width: 60%"></span>
                           <span class="tooltiptext tooltip-top"></span>
                         </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">({{popularDepartment.products.review}} Reviews)</a>
+                        <a href="#" class="rating-reviews">({{popularDepartment.products.review}} Reviews)</a>
                       </div>
                       <div class="product-price" style="display: flex; justify-content: space-between">
                         <ins class="new-price">BDT {{popularDepartment.products.price}}</ins>
-                        <a href="" style="
+                        <a href="{% url 'ADD_TO_CART' popularDepartment.products.id %}" style="
                                   border: 1px solid #336696;
                                   color: #336696;
                                   padding: 0px 5px;
@@ -470,11 +470,11 @@
                           <span class="ratings" style="width: 60%"></span>
                           <span class="tooltiptext tooltip-top"></span>
                         </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">({{popularDepartment.products.review}} Reviews)</a>
+                        <a href="#" class="rating-reviews">({{popularDepartment.products.review}} Reviews)</a>
                       </div>
                       <div class="product-price" style="display: flex; justify-content: space-between">
                         <ins class="new-price">BDT {{popularDepartment.products.price}}</ins>
-                        <a href="" style="
+                        <a href="{% url 'ADD_TO_CART' popularDepartment.products.id %}" style="
                                   border: 1px solid #336696;
                                   color: #336696;
                                   padding: 0px 5px;
@@ -502,7 +502,7 @@
             align-items: center;
           " class="title ls-normal mb-4 mt-10 pt-1 appear-animate">
         WOMEN FASHION
-        <a href="" style="
+        <a href="{% url 'shop_page' %}" style="
               border: 1px solid #336696;
               color: #336696;
               padding: 8px 12px;
@@ -529,507 +529,183 @@
         </ul>
       </div>
       <div class="tab-content product-wrapper appear-animate">
+
         <div class="tab-pane active pt-4" id="tab2-1">
           <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
+            {% for product in products|slice:":15" %}
+              <div class="product-wrap">
+                <div class="product text-center">
+                  <figure class="product-media">
+                    <a href="{% url 'product_details' product.slug %}">
+                      <img src="{{product.image.url}}" alt="Product" width="300"
+                        height="338" />
+                    </a>
+                  </figure>
+                  <div class="product-details" style="text-align: left">
+                    <h4 class="product-name">
+                      <a href="{% url 'product_details' product.slug %}">{{product.name}}</a>
+                    </h4>
+                    <div class="ratings-container" style="display: flex; justify-content: flex-start">
+                      <div class="ratings-full">
+                        <span class="ratings" style="width: 60%"></span>
+                        <span class="tooltiptext tooltip-top"></span>
+                      </div>
+                      <a href="#" class="rating-reviews">({{product.review}} Reviews)</a>
                     </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
+                    <div class="product-price" style="display: flex; justify-content: space-between">
+                      <ins class="new-price">BDT. {{product.price}}</ins>
+                      <a href="{% url 'ADD_TO_CART' product.id %}" style="
+                            border: 1px solid #336696;
+                            color: #336696;
+                            padding: 0px 5px;
+                            font-size: 14px;
+                          " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
+                        onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
-                    </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                  </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
+          
           </div>
         </div>
+
         <div class="tab-pane pt-4" id="tab2-2">
           <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
+            {% for product in products %}
+              {% if product.category.name == "watch" %}
+                  <div class="product-wrap">
+                    <div class="product text-center">
+                      <figure class="product-media">
+                        <a href="{% url 'product_details' product.slug %}">
+                          <img src="{{product.image.url}}" alt="Product" width="300"
+                            height="338" />
+                        </a>
+                      </figure>
+                      <div class="product-details" style="text-align: left">
+                        <h4 class="product-name">
+                          <a href="{% url 'product_details' product.slug %}">{{product.name}}</a>
+                        </h4>
+                        <div class="ratings-container" style="display: flex; justify-content: flex-start">
+                          <div class="ratings-full">
+                            <span class="ratings" style="width: 60%"></span>
+                            <span class="tooltiptext tooltip-top"></span>
+                          </div>
+                          <a href="#" class="rating-reviews">({{product.review}} Reviews)</a>
+                        </div>
+                        <div class="product-price" style="display: flex; justify-content: space-between">
+                          <ins class="new-price">BDT. {{product.price}}</ins>
+                          <a href="{% url 'ADD_TO_CART' product.id %}" style="
+                                border: 1px solid #336696;
+                                color: #336696;
+                                padding: 0px 5px;
+                                font-size: 14px;
+                              " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
+                            onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
+                        </div>
+                      </div>
                     </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
                   </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
         <!-- End of Tab Pane -->
+
         <div class="tab-pane pt-4" id="tab2-3">
           <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
+
+            {% for product in products %}
+              {% if product.category.name == "shoes" %}
+                  <div class="product-wrap">
+                    <div class="product text-center">
+                      <figure class="product-media">
+                        <a href="{% url 'product_details' product.slug %}">
+                          <img src="{{product.image.url}}" alt="Product" width="300"
+                            height="338" />
+                        </a>
+                      </figure>
+                      <div class="product-details" style="text-align: left">
+                        <h4 class="product-name">
+                          <a href="{% url 'product_details' product.slug %}">{{product.name}}</a>
+                        </h4>
+                        <div class="ratings-container" style="display: flex; justify-content: flex-start">
+                          <div class="ratings-full">
+                            <span class="ratings" style="width: 60%"></span>
+                            <span class="tooltiptext tooltip-top"></span>
+                          </div>
+                          <a href="#" class="rating-reviews">({{product.review}} Reviews)</a>
+                        </div>
+                        <div class="product-price" style="display: flex; justify-content: space-between">
+                          <ins class="new-price">BDT. {{product.price}}</ins>
+                          <a href="{% url 'ADD_TO_CART' product.id %}" style="
+                                border: 1px solid #336696;
+                                color: #336696;
+                                padding: 0px 5px;
+                                font-size: 14px;
+                              " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
+                            onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
+                        </div>
+                      </div>
                     </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
                   </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+              {% endif %}
+            {% endfor %}
+
           </div>
         </div>
+
         <div class="tab-pane pt-4" id="tab2-4">
           <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
-            <div class="product-wrap">
-              <div class="product text-center">
-                <figure class="product-media">
-                  <a href="product-without-sidebar.html">
-                    <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                      height="338" />
-                  </a>
-                </figure>
-                <div class="product-details" style="text-align: left">
-                  <h4 class="product-name">
-                    <a href="product-without-sidebar.html">Classic Hat</a>
-                  </h4>
-                  <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                    <div class="ratings-full">
-                      <span class="ratings" style="width: 60%"></span>
-                      <span class="tooltiptext tooltip-top"></span>
+
+            {% for product in products %}
+              {% if product.category.name == "clothing" %}
+                  <div class="product-wrap">
+                    <div class="product text-center">
+                      <figure class="product-media">
+                        <a href="{% url 'product_details' product.slug %}">
+                          <img src="{{product.image.url}}" alt="Product" width="300"
+                            height="338" />
+                        </a>
+                      </figure>
+                      <div class="product-details" style="text-align: left">
+                        <h4 class="product-name">
+                          <a href="{% url 'product_details' product.slug %}">{{product.name}}</a>
+                        </h4>
+                        <div class="ratings-container" style="display: flex; justify-content: flex-start">
+                          <div class="ratings-full">
+                            <span class="ratings" style="width: 60%"></span>
+                            <span class="tooltiptext tooltip-top"></span>
+                          </div>
+                          <a href="#" class="rating-reviews">({{product.review}} Reviews)</a>
+                        </div>
+                        <div class="product-price" style="display: flex; justify-content: space-between">
+                          <ins class="new-price">BDT. {{product.price}}</ins>
+                          <a href="{% url 'ADD_TO_CART' product.id %}" style="
+                                border: 1px solid #336696;
+                                color: #336696;
+                                padding: 0px 5px;
+                                font-size: 14px;
+                              " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
+                            onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
+                        </div>
+                      </div>
                     </div>
-                    <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
                   </div>
-                  <div class="product-price" style="display: flex; justify-content: space-between">
-                    <ins class="new-price">$53.00</ins>
-                    <a href="" style="
-                          border: 1px solid #336696;
-                          color: #336696;
-                          padding: 0px 5px;
-                          font-size: 14px;
-                        " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                      onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+              {% endif %}
+            {% endfor %}
+
           </div>
         </div>
       </div>
     </div>
     <!-- ============================tab end============================= -->
-    <!-- ======================================================================================================= -->
-    <!-- ============================Cosmetic start====================== -->
-    <!-- <div class="row category-cosmetic-lifestyle appear-animate mb-5">
-        <div class="col-md-6 mb-4">
-          <div class="banner banner-fixed category-banner-1 br-xs">
-            <figure>
-              <img
-                src="{% static 'assets/images/demos/demo1/categories/3-1.jpg' %}"
-                alt="Category Banner"
-                width="610"
-                height="200"
-                style="background-color: #3b4b48"
-              />
-            </figure>
-            <div class="banner-content y-50 pt-1">
-              <h5 class="banner-subtitle font-weight-bold text-uppercase">
-                Natural Process
-              </h5>
-              <h3
-                class="banner-title font-weight-bolder text-capitalize text-white"
-              >
-                Cosmetic Makeup<br />Professional
-              </h3>
-              <a
-                href="{% url 'shop_page' %}"
-                class="btn btn-white btn-link btn-underline btn-icon-right"
-                >Shop Now<i class="w-icon-long-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="banner banner-fixed category-banner-2 br-xs">
-            <figure>
-              <img
-                src="{% static 'assets/images/demos/demo1/categories/3-2.jpg' %}"
-                alt="Category Banner"
-                width="610"
-                height="200"
-                style="background-color: #e5e5e5"
-              />
-            </figure>
-            <div class="banner-content y-50 pt-1">
-              <h5 class="banner-subtitle font-weight-bold text-uppercase">
-                Trending Now
-              </h5>
-              <h3 class="banner-title font-weight-bolder text-capitalize">
-                Women's Lifestyle<br />Collection
-              </h3>
-              <a
-                href="{% url 'shop_page' %}"
-                class="btn btn-dark btn-link btn-underline btn-icon-right"
-                >Shop Now<i class="w-icon-long-arrow-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </div> -->
-    <!-- ============================Cosmetic end======================== -->
-    <!-- ====================================================================================================== -->
+    
     <!-- ============================KIDS CORNER========================= -->
     <div class="product-wrapper-1 appear-animate mb-5">
       <div class="title-link-wrapper pb-1 mb-4">
         <h2 class="title ls-normal mb-0">KIDS CORNER</h2>
-        <a href="shop-boxed-banner.html" class="font-size-normal font-weight-bold ls-25 mb-0">More Products<i
+        <a href="{% url 'shop_page' %}" class="font-size-normal font-weight-bold ls-25 mb-0">More Products<i
             class="w-icon-long-arrow-right"></i></a>
       </div>
       <div class="row">
@@ -1047,293 +723,44 @@
                             }
                         }">
             <div class="swiper-wrapper row cols-xl-4 cols-lg-3 cols-2">
-              <div class="swiper-slide product-col">
-                <div class="product-wrap">
-                  <div class="product text-center">
-                    <figure class="product-media">
-                      <a href="product-without-sidebar.html">
-                        <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                          height="338" />
-                      </a>
-                    </figure>
-                    <div class="product-details" style="text-align: left">
-                      <h4 class="product-name">
-                        <a href="product-without-sidebar.html">Classic Hat</a>
-                      </h4>
-                      <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                        <div class="ratings-full">
-                          <span class="ratings" style="width: 60%"></span>
-                          <span class="tooltiptext tooltip-top"></span>
+              <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
+                {% for product in products %}
+                {% if product.category.name == "kidscorner" %}
+                  <div class="product-wrap">
+                      <div class="product text-center">
+                        <figure class="product-media">
+                          <a href="{% url 'product_details' product.slug %}">
+                            <img src="{{product.image.url}}" alt="Product" width="300"
+                              height="338" />
+                          </a>
+                        </figure>
+                        <div class="product-details" style="text-align: left">
+                          <h4 class="product-name">
+                            <a href="{% url 'product_details' product.slug %}">{{product.name}}</a>
+                          </h4>
+                          <div class="ratings-container" style="display: flex; justify-content: flex-start">
+                            <div class="ratings-full">
+                              <span class="ratings" style="width: 60%"></span>
+                              <span class="tooltiptext tooltip-top"></span>
+                            </div>
+                            <a href="#" class="rating-reviews">({{product.review}} Reviews)</a>
+                          </div>
+                          <div class="product-price" style="display: flex; justify-content: space-between">
+                            <ins class="new-price">BDT. {{product.price}}</ins>
+                            <a href="{% url 'ADD_TO_CART' product.id %}" style="
+                                  border: 1px solid #336696;
+                                  color: #336696;
+                                  padding: 0px 5px;
+                                  font-size: 14px;
+                                " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
+                              onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
+                          </div>
                         </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                      </div>
-                      <div class="product-price" style="
-                            display: flex;
-                            justify-content: space-between;
-                          ">
-                        <ins class="new-price">$53.00</ins>
-                        <a href="" style="
-                              border: 1px solid #336696;
-                              color: #336696;
-                              padding: 0px 5px;
-                              font-size: 14px;
-                            " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                          onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div class="product-wrap">
-                  <div class="product text-center">
-                    <figure class="product-media">
-                      <a href="product-without-sidebar.html">
-                        <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                          height="338" />
-                      </a>
-                    </figure>
-                    <div class="product-details" style="text-align: left">
-                      <h4 class="product-name">
-                        <a href="product-without-sidebar.html">Classic Hat</a>
-                      </h4>
-                      <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                        <div class="ratings-full">
-                          <span class="ratings" style="width: 60%"></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                      </div>
-                      <div class="product-price" style="
-                            display: flex;
-                            justify-content: space-between;
-                          ">
-                        <ins class="new-price">$53.00</ins>
-                        <a href="" style="
-                              border: 1px solid #336696;
-                              color: #336696;
-                              padding: 0px 5px;
-                              font-size: 14px;
-                            " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                          onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide product-col">
-                <div class="product-wrap">
-                  <div class="product text-center">
-                    <figure class="product-media">
-                      <a href="product-without-sidebar.html">
-                        <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                          height="338" />
-                      </a>
-                    </figure>
-                    <div class="product-details" style="text-align: left">
-                      <h4 class="product-name">
-                        <a href="product-without-sidebar.html">Classic Hat</a>
-                      </h4>
-                      <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                        <div class="ratings-full">
-                          <span class="ratings" style="width: 60%"></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                      </div>
-                      <div class="product-price" style="
-                            display: flex;
-                            justify-content: space-between;
-                          ">
-                        <ins class="new-price">$53.00</ins>
-                        <a href="" style="
-                              border: 1px solid #336696;
-                              color: #336696;
-                              padding: 0px 5px;
-                              font-size: 14px;
-                            " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                          onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="product-wrap">
-                  <div class="product text-center">
-                    <figure class="product-media">
-                      <a href="product-without-sidebar.html">
-                        <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                          height="338" />
-                      </a>
-                    </figure>
-                    <div class="product-details" style="text-align: left">
-                      <h4 class="product-name">
-                        <a href="product-without-sidebar.html">Classic Hat</a>
-                      </h4>
-                      <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                        <div class="ratings-full">
-                          <span class="ratings" style="width: 60%"></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                      </div>
-                      <div class="product-price" style="
-                            display: flex;
-                            justify-content: space-between;
-                          ">
-                        <ins class="new-price">$53.00</ins>
-                        <a href="" style="
-                              border: 1px solid #336696;
-                              color: #336696;
-                              padding: 0px 5px;
-                              font-size: 14px;
-                            " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                          onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide product-col">
-                <div class="product-wrap">
-                  <div class="product text-center">
-                    <figure class="product-media">
-                      <a href="product-without-sidebar.html">
-                        <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                          height="338" />
-                      </a>
-                    </figure>
-                    <div class="product-details" style="text-align: left">
-                      <h4 class="product-name">
-                        <a href="product-without-sidebar.html">Classic Hat</a>
-                      </h4>
-                      <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                        <div class="ratings-full">
-                          <span class="ratings" style="width: 60%"></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                      </div>
-                      <div class="product-price" style="
-                            display: flex;
-                            justify-content: space-between;
-                          ">
-                        <ins class="new-price">$53.00</ins>
-                        <a href="" style="
-                              border: 1px solid #336696;
-                              color: #336696;
-                              padding: 0px 5px;
-                              font-size: 14px;
-                            " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                          onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="product-wrap">
-                  <div class="product text-center">
-                    <figure class="product-media">
-                      <a href="product-without-sidebar.html">
-                        <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                          height="338" />
-                      </a>
-                    </figure>
-                    <div class="product-details" style="text-align: left">
-                      <h4 class="product-name">
-                        <a href="product-without-sidebar.html">Classic Hat</a>
-                      </h4>
-                      <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                        <div class="ratings-full">
-                          <span class="ratings" style="width: 60%"></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                      </div>
-                      <div class="product-price" style="
-                            display: flex;
-                            justify-content: space-between;
-                          ">
-                        <ins class="new-price">$53.00</ins>
-                        <a href="" style="
-                              border: 1px solid #336696;
-                              color: #336696;
-                              padding: 0px 5px;
-                              font-size: 14px;
-                            " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                          onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide product-col">
-                <div class="product-wrap">
-                  <div class="product text-center">
-                    <figure class="product-media">
-                      <a href="product-without-sidebar.html">
-                        <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                          height="338" />
-                      </a>
-                    </figure>
-                    <div class="product-details" style="text-align: left">
-                      <h4 class="product-name">
-                        <a href="product-without-sidebar.html">Classic Hat</a>
-                      </h4>
-                      <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                        <div class="ratings-full">
-                          <span class="ratings" style="width: 60%"></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                      </div>
-                      <div class="product-price" style="
-                            display: flex;
-                            justify-content: space-between;
-                          ">
-                        <ins class="new-price">$53.00</ins>
-                        <a href="" style="
-                              border: 1px solid #336696;
-                              color: #336696;
-                              padding: 0px 5px;
-                              font-size: 14px;
-                            " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                          onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="product-wrap">
-                  <div class="product text-center">
-                    <figure class="product-media">
-                      <a href="product-without-sidebar.html">
-                        <img src="{% static 'assets/images/demos/demo1/products/3-1-1.jpg' %}" alt="Product" width="300"
-                          height="338" />
-                      </a>
-                    </figure>
-                    <div class="product-details" style="text-align: left">
-                      <h4 class="product-name">
-                        <a href="product-without-sidebar.html">Classic Hat</a>
-                      </h4>
-                      <div class="ratings-container" style="display: flex; justify-content: flex-start">
-                        <div class="ratings-full">
-                          <span class="ratings" style="width: 60%"></span>
-                          <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="product-without-sidebar.html" class="rating-reviews">(1 Reviews)</a>
-                      </div>
-                      <div class="product-price" style="
-                            display: flex;
-                            justify-content: space-between;
-                          ">
-                        <ins class="new-price">$53.00</ins>
-                        <a href="" style="
-                              border: 1px solid #336696;
-                              color: #336696;
-                              padding: 0px 5px;
-                              font-size: 14px;
-                            " onMouseOver="this.style.background='#336696'; this.style.color='#fff'"
-                          onMouseOut="this.style.background='transparent';this.style.color='#336696'">Add card</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {% endif %}
+                
+                {% endfor %}
               </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -1348,7 +775,7 @@
     <div class="post-wrapper appear-animate mb-4">
       <div class="title-link-wrapper pb-1 mb-4">
         <h2 class="title ls-normal mb-0">From Our Blog</h2>
-        <a href="blog-listing.html" class="font-weight-bold font-size-normal">View All Articles</a>
+        <a href="#" class="font-weight-bold font-size-normal">View All Articles</a>
       </div>
       <div class="swiper">
         <div class="swiper-container swiper-theme" data-swiper-options="{
@@ -1369,7 +796,7 @@
           <div class="swiper-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-1">
             <div class="swiper-slide post text-center overlay-zoom">
               <figure class="post-media br-sm">
-                <a href="post-single.html">
+                <a href="#">
                   <img src="{% static 'assets/images/demos/demo1/blogs/1.jpg' %}" alt="Post" width="280" height="180"
                     style="background-color: #4b6e91" />
                 </a>
@@ -1379,7 +806,7 @@
                 <h4 class="post-title">
                   <a href="#">What is E-Commerce</a>
                 </h4>
-                <a href="post-single.html" style="
+                <a href="#" style="
                       padding: 8px 15px;
                       border: 1px solid #963366;
                       color: #963366;
@@ -1388,7 +815,7 @@
             </div>
             <div class="swiper-slide post text-center overlay-zoom">
               <figure class="post-media br-sm">
-                <a href="post-single.html">
+                <a href="#">
                   <img src="{% static 'assets/images/demos/demo1/blogs/1.jpg' %}" alt="Post" width="280" height="180"
                     style="background-color: #4b6e91" />
                 </a>
@@ -1398,7 +825,7 @@
                 <h4 class="post-title">
                   <a href="#">What is E-Commerce</a>
                 </h4>
-                <a href="post-single.html" style="
+                <a href="#" style="
                       padding: 8px 15px;
                       border: 1px solid #963366;
                       color: #963366;
@@ -1407,7 +834,7 @@
             </div>
             <div class="swiper-slide post text-center overlay-zoom">
               <figure class="post-media br-sm">
-                <a href="post-single.html">
+                <a href="#">
                   <img src="{% static 'assets/images/demos/demo1/blogs/1.jpg' %}" alt="Post" width="280" height="180"
                     style="background-color: #4b6e91" />
                 </a>
@@ -1417,7 +844,7 @@
                 <h4 class="post-title">
                   <a href="#">What is E-Commerce</a>
                 </h4>
-                <a href="post-single.html" style="
+                <a href="#" style="
                       padding: 8px 15px;
                       border: 1px solid #963366;
                       color: #963366;
@@ -1426,7 +853,7 @@
             </div>
             <div class="swiper-slide post text-center overlay-zoom">
               <figure class="post-media br-sm">
-                <a href="post-single.html">
+                <a href="#">
                   <img src="{% static 'assets/images/demos/demo1/blogs/1.jpg' %}" alt="Post" width="280" height="180"
                     style="background-color: #4b6e91" />
                 </a>
@@ -1436,7 +863,7 @@
                 <h4 class="post-title">
                   <a href="#">What is E-Commerce</a>
                 </h4>
-                <a href="post-single.html" style="
+                <a href="#" style="
                       padding: 8px 15px;
                       border: 1px solid #963366;
                       color: #963366;

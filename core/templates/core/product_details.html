@@ -10,7 +10,7 @@
     <ul class="breadcrumb bb-no">
       <li><a href="{% url 'HOME' %}">Home</a></li>
       <li><a href="{% url 'shop_page' %}">Shop</a></li>
-      <li>Products</li>
+      <li>Products </li>
     </ul>
   </nav>
   <!-- End of Breadcrumb -->
@@ -150,11 +150,10 @@
                   <div class="product-qty-form with-label">
                     <label>Quantity:</label>
                     <div class="input-group">
-                      <input class="quantity form-control" type="number" id="quantity" min="1" max="10000000" />
-                      <button class="quantity-plus w-icon-plus"></button>
-                      <button class="quantity-minus w-icon-minus"></button>
+                      <input class="quantity_ form-control" type="number" id="quantity" value="{{cart_quantity.quantity}}"/>
+                      <button class="quantity_plus w-icon-plus"></button>
+                      <button class="quantity_minus w-icon-minus"></button>
                     </div>
-
                   </div>
 
                   <input hidden name="addtocard" type="text" value="{{product.id}}" id="productid">
@@ -767,6 +766,41 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script>
+  $(document).ready(function() {
+    $('.quantity_plus').click(function() {
+      // Get the current value of the input
+      var currentValue = parseInt($('.quantity_').val()) || 0;
+      // Increment the value
+      currentValue++;
+      // Update the input with the new value
+      $('.quantity_').val(currentValue);
+
+
+      // Enable the minus button
+      $('.quantity_minus').removeClass('disabled');
+    });
+
+    $('.quantity_minus').click(function() {
+      // Get the current value of the input
+      var currentValue = parseInt($('.quantity_').val()) || 0;
+
+      // Ensure the value doesn't go below 1
+      if (currentValue > 1) {
+        // Decrement the value
+        currentValue--;
+
+        // Update the input with the new value
+        $('.quantity_').val(currentValue);
+      }
+
+      // Disable the minus button if the value is 1
+      if (currentValue === 1) {
+        $('.quantity_minus').addClass('disabled');
+      }
+    });
+  });
+</script>
+<script>
   $("#addtocart").on('click', function () {
     var productId = $("#productid").val();
     
@@ -788,7 +822,6 @@
       },
       success: function (res) {
         if (res.status == "success") {
-          var cartalert = $("#cartalert");
           cartalert.removeClass("d-none")
           setTimeout(function () {
             cartalert.addClass("d-none");
@@ -799,6 +832,6 @@
       },
     });
   })
-</script>
+</script> 
 
 {% endblock body %}

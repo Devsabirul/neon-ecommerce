@@ -55,10 +55,10 @@
             <div class="tab-pane active in" id="account-dashboard">
               <p class="greeting">
                 Hello
-                <span class="text-dark font-weight-bold">John Doe</span>
+                <span class="text-dark font-weight-bold">{{request.user.first_name}} {{request.user.last_name}}</span>
                 (not
-                <span class="text-dark font-weight-bold">John Doe</span>?
-                <a href="#" class="text-primary">Log out</a>)
+                <span class="text-dark font-weight-bold">{{request.user.first_name}} {{request.user.last_name}}</span>?
+                <a href="{% url 'signout' %}" class="text-primary">Log out</a>)
               </p>
 
               <p class="mb-4">
@@ -114,20 +114,9 @@
                     </div>
                   </a>
                 </div>
+                
                 <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                  <a href="wishlist.html" class="link-to-tab">
-                    <div class="icon-box text-center">
-                      <span class="icon-box-icon icon-wishlist">
-                        <i class="w-icon-heart"></i>
-                      </span>
-                      <div class="icon-box-content">
-                        <p class="text-uppercase mb-0">Wishlist</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                  <a href="#">
+                  <a href="{% url 'signout' %}">
                     <div class="icon-box text-center">
                       <span class="icon-box-icon icon-logout">
                         <i class="w-icon-logout"></i>
@@ -165,74 +154,12 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="order-id">#2321</td>
-                    <td class="order-date">August 20, 2021</td>
-                    <td class="order-status">Processing</td>
-                    <td class="order-total">
-                      <span class="order-price">$121.00</span> for
-                      <span class="order-quantity"> 1</span> item
-                    </td>
-                    <td class="order-action">
-                      <a
-                        href="#"
-                        class="btn btn-outline btn-default btn-block btn-sm btn-rounded"
-                        >View</a
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="order-id">#2321</td>
-                    <td class="order-date">August 20, 2021</td>
-                    <td class="order-status">Processing</td>
-                    <td class="order-total">
-                      <span class="order-price">$150.00</span> for
-                      <span class="order-quantity"> 1</span> item
-                    </td>
-                    <td class="order-action">
-                      <a
-                        href="#"
-                        class="btn btn-outline btn-default btn-block btn-sm btn-rounded"
-                        >View</a
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="order-id">#2319</td>
-                    <td class="order-date">August 20, 2021</td>
-                    <td class="order-status">Processing</td>
-                    <td class="order-total">
-                      <span class="order-price">$201.00</span> for
-                      <span class="order-quantity"> 1</span> item
-                    </td>
-                    <td class="order-action">
-                      <a
-                        href="#"
-                        class="btn btn-outline btn-default btn-block btn-sm btn-rounded"
-                        >View</a
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="order-id">#2318</td>
-                    <td class="order-date">August 20, 2021</td>
-                    <td class="order-status">Processing</td>
-                    <td class="order-total">
-                      <span class="order-price">$321.00</span> for
-                      <span class="order-quantity"> 1</span> item
-                    </td>
-                    <td class="order-action">
-                      <a
-                        href="#"
-                        class="btn btn-outline btn-default btn-block btn-sm btn-rounded"
-                        >View</a
-                      >
-                    </td>
+                    <td class="text-center" colspan=5>Please contact with owener!</td>
                   </tr>
                 </tbody>
               </table>
-
               <a
-                href="shop-fullwidth-banner.html"
+                href="{% url 'shop_page' %}"
                 class="btn btn-dark btn-rounded btn-icon-right"
                 >Go Shop<i class="w-icon-long-arrow-right"></i
               ></a>
@@ -281,31 +208,31 @@
                         <tbody>
                           <tr>
                             <th>Name:</th>
-                            <td>John Doe</td>
+                            <td>{{request.user.first_name}}</td>
                           </tr>
                           <tr>
                             <th>Company:</th>
-                            <td>Conia</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>Address:</th>
-                            <td>Wall Street</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>City:</th>
-                            <td>California</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>Country:</th>
-                            <td>United States (US)</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>Postcode:</th>
-                            <td>92020</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>Phone:</th>
-                            <td>1112223334</td>
+                            <td></td>
                           </tr>
                         </tbody>
                       </table>
@@ -331,27 +258,27 @@
                         <tbody>
                           <tr>
                             <th>Name:</th>
-                            <td>John Doe</td>
+                            <td>{{request.user.first_name}}</td>
                           </tr>
                           <tr>
                             <th>Company:</th>
-                            <td>Conia</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>Address:</th>
-                            <td>Wall Street</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>City:</th>
-                            <td>California</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>Country:</th>
-                            <td>United States (US)</td>
+                            <td></td>
                           </tr>
                           <tr>
                             <th>Postcode:</th>
-                            <td>92020</td>
+                            <td></td>
                           </tr>
                         </tbody>
                       </table>
@@ -392,8 +319,8 @@
                         type="text"
                         id="firstname"
                         name="firstname"
-                        placeholder="John"
                         class="form-control form-control-md"
+                        value="{{request.user.first_name}}"
                       />
                     </div>
                   </div>
@@ -404,8 +331,8 @@
                         type="text"
                         id="lastname"
                         name="lastname"
-                        placeholder="Doe"
                         class="form-control form-control-md"
+                        value="{{request.user.last_name}}"
                       />
                     </div>
                   </div>
@@ -417,8 +344,8 @@
                     type="text"
                     id="display-name"
                     name="display_name"
-                    placeholder="John Doe"
                     class="form-control form-control-md mb-0"
+                    value="{{request.user.first_name}} {{request.user.first_name}}"
                   />
                   <p>
                     This will be how your name will be displayed in the

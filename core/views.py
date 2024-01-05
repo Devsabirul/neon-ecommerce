@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.db.models import Q
+from django.http import JsonResponse
 
 
 def home(request):
@@ -8,10 +9,12 @@ def home(request):
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
     popularpd = PopularDepartMents.objects.all()
+    products = Products.objects.order_by("-id")
     context = {
         'navbar':'home',
         'popularDepartment':popularpd,
-        'cart':cart
+        'cart':cart,
+        'products':products
     }
     return render(request,'core/index.html',context)
 
@@ -32,23 +35,28 @@ def product_details(request,slug):
     cart = 0
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
+        cart_quantity = Cart.objects.get(user=request.user,product__slug=slug)
+        
         if request.method == "POST":
             productid = request.POST.get('productId')
             quantitys = request.POST.get('quantity')
             quantity_ = int(quantitys)
             product_ = int(productid)
-            try:
-                cart = Cart.objects.get(Q(product=product_,user = request.user))
-                cart.quantity += quantity_
-                cart.save()
-            except Cart.DoesNotExist:
-                Cart(user=request.user,product=product,quantity=quantity_).save()
-            return JsonResponse({'status': 'success'})
+            if quantity_ != 0:
+                try:
+                    cart = Cart.objects.get(Q(product=product_,user = request.user))
+                    print(cart)
+                    cart.quantity = quantity_
+                    cart.save()
+                except Cart.DoesNotExist:
+                    Cart(user=request.user,product=product,quantity=quantity_).save()
+                return JsonResponse({'status': 'success'})
     product = Products.objects.get(slug=slug)
     context = {
         'navbar':'shop',
         'product':product,
         'cart':cart,
+        'cart_quantity':cart_quantity
     }
     return render(request,"core/product_details.html",context)
 
@@ -62,7 +70,23 @@ def cart(request):
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
         subtotal = get_subTotal(cart)  
-        print(subtotal)
+
+        if request.method == "POST":
+            cartId = request.POST.get('cartId')
+            quantitys = request.POST.get('quantity')
+            quantity_ = int(quantitys)
+            cartID = int(cartId)
+            if quantity_ != 0:
+                try:
+                    cart = Cart.objects.get(Q(id=cartID,user = request.user))
+                    cart.quantity = quantity_
+                    cart.save()
+                    line_total = cart.line_total
+                    
+                except Cart.DoesNotExist:
+                    Cart(user=request.user,product=product,quantity=quantity_).save()
+                return JsonResponse({'status': 'success'})
+
         return render(request,"core/cart.html",locals())
     else:
         return redirect("login")
