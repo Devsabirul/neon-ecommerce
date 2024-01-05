@@ -153,9 +153,24 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="text-center" colspan=5>Please contact with owener!</td>
-                  </tr>
+                  {% for order in orders %}
+                      <tr>
+                        <td class="order-id text-center">#{{order.id}}</td>
+                        <td class="order-date text-center">{{order.date}}1</td>
+                        <td class="order-status text-center">{{order.status}}</td>
+                        <td class="order-total text-center">
+                          <span class="order-price">{{order.total_order}} tk</span>
+                        </td>
+                        <td class="order-action">
+                          <a
+                            href="{% url 'invoice' order.id %}"
+                            class="btn btn-outline btn-default btn-block btn-sm btn-rounded"
+                            >View</a
+                          >
+                        </td>
+                      </tr>
+                    {% endfor %}
+                 
                 </tbody>
               </table>
               <a
@@ -208,31 +223,31 @@
                         <tbody>
                           <tr>
                             <th>Name:</th>
-                            <td>{{request.user.first_name}}</td>
+                            <td>{{customer.first_name}} {{custom.last_name}}</td>
                           </tr>
                           <tr>
                             <th>Company:</th>
-                            <td></td>
+                            <td>{{customer.company_name}}</td>
                           </tr>
                           <tr>
                             <th>Address:</th>
-                            <td></td>
+                            <td>{{customer.Address}}</td>
                           </tr>
                           <tr>
                             <th>City:</th>
-                            <td></td>
+                            <td>{{customer.city}}</td>
                           </tr>
                           <tr>
                             <th>Country:</th>
-                            <td></td>
+                            <td>{{customer.country}}</td>
                           </tr>
                           <tr>
                             <th>Postcode:</th>
-                            <td></td>
+                            <td>{{customer.zipcode}}</td>
                           </tr>
                           <tr>
                             <th>Phone:</th>
-                            <td></td>
+                            <td>{{customer.phone}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -258,27 +273,31 @@
                         <tbody>
                           <tr>
                             <th>Name:</th>
-                            <td>{{request.user.first_name}}</td>
+                            <td>{{customer.first_name}} {{custom.last_name}}</td>
                           </tr>
                           <tr>
                             <th>Company:</th>
-                            <td></td>
+                            <td>{{customer.company_name}}</td>
                           </tr>
                           <tr>
                             <th>Address:</th>
-                            <td></td>
+                            <td>{{customer.Address}}</td>
                           </tr>
                           <tr>
                             <th>City:</th>
-                            <td></td>
+                            <td>{{customer.city}}</td>
                           </tr>
                           <tr>
                             <th>Country:</th>
-                            <td></td>
+                            <td>{{customer.country}}</td>
                           </tr>
                           <tr>
                             <th>Postcode:</th>
-                            <td></td>
+                            <td>{{customer.zipcode}}</td>
+                          </tr>
+                          <tr>
+                            <th>Phone:</th>
+                            <td>{{customer.phone}}</td>
                           </tr>
                         </tbody>
                       </table>

@@ -52,9 +52,14 @@ def registration(request):
 def my_account(request):
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
+        orders = Order.objects.filter(user=request.user)
+        customer = Customer.objects.filter(user=request.user).last()
+        print(customer)
         context ={
             'navbar':'my_account',
-            'cart':cart
+            'cart':cart,
+            'orders':orders,
+            'customer':customer
         }
         return render(request,"account/my_account.html",context)
     else:

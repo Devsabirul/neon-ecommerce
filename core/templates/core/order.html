@@ -1,0 +1,104 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Order Success Page{% endblock title %}
+{% block body %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.min.css' %}" />
+
+<!-- Start of Main -->
+<main class="main order">
+    <!-- Start of Breadcrumb -->
+    <nav class="breadcrumb-nav">
+      <div class="container">
+        <ul class="breadcrumb shop-breadcrumb bb-no">
+          <li class="passed"><a href="#">Shopping Cart</a></li>
+          <li class="passed"><a href="#">Checkout</a></li>
+          <li class="active"><a href="#">Order Complete</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- End of Breadcrumb -->
+
+    <!-- Start of PageContent -->
+    <div class="page-content mb-10 pb-2">
+      <div class="container">
+        <div class="order-success text-center font-weight-bolder text-dark">
+          <i class="fas fa-check"></i>
+          Thank you. Your order has been received.
+        </div>
+        <!-- End of Order Success -->
+
+        <ul class="order-view list-style-none">
+          <li>
+            <label>Order Id</label>
+            <strong>#{{order.id}}</strong>
+          </li>
+          <li>
+            <label>Status</label>
+            <strong>{{order.status}}</strong>
+          </li>
+          <li>
+            <label>Date</label>
+            <strong> {{order.date}}</strong>
+          </li>
+          <li>
+            <label>Total</label>
+            <strong>{{order.total_order}} tk </strong>
+          </li>
+          <li>
+            <label>Payment method</label>
+            <strong> {{order.pymentSystem}}</strong>
+          </li>
+        </ul>
+        <!-- End of Order View -->
+
+        <div class="order-details-wrapper mb-5">
+          <h4 class="title text-uppercase ls-25 mb-5">Order Details</h4>
+          <table class="order-table">
+            <thead>
+              <tr>
+                <th class="text-dark">Product</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for orderitem in orderitems %}
+                <tr>
+                    <td>
+                        <a href="{% url 'product_details' orderitem.product.slug %}">{{orderitem.product.name}}</a>&nbsp;<strong>x {{orderitem.quantity}}</strong>
+                    </td>
+                    <td>{{orderitem.order_subtotal}} tk</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Subtotal:</th>
+                <td>{{order.total_order}} tk</td>
+              </tr>
+              <tr>
+                <th>Shipping:</th>
+                <td>Free Shipping</td>
+              </tr>
+              <tr>
+                <th>Payment method:</th>
+                <td>{{order.pymentSystem}}</td>
+              </tr>
+              <tr class="total">
+                <th class="border-no">Total:</th>
+                <td class="border-no">{{order.total_order}} tk</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- End of Order Details -->
+        <a
+          href="{% url 'my_account' %}"
+          class="btn btn-dark btn-rounded btn-icon-left btn-back mt-6"
+          ><i class="w-icon-long-arrow-left"></i>Back To List</a
+        >
+      </div>
+    </div>
+    <!-- End of PageContent -->
+  </main>
+  <!-- End of Main -->
+{% endblock body %}

@@ -56,48 +56,43 @@ class Cart(models.Model):
         return self.quantity * self.product.price
 
 
-# class Customer(models.Model):
-#     country = models.CharField(max_length=100)
-#     first_name = models.CharField(max_length=100)
-#     last_name = models.CharField(max_length=100)
-#     company_name = models.CharField(max_length=100,null=True,blank=True)
-#     Address = models.CharField(max_length=100)
-#     city = models.CharField(max_length=100)
-#     state = models.CharField(max_length=100)
-#     zipcode = models.CharField(max_length=100)
-#     email = models.CharField(max_length=100)
-#     phone = models.CharField(max_length=100)
+class Customer(models.Model):
+    country = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=100,null=True,blank=True)
+    Address = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zipcode = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True)
 
-#     def __str__(self):
-#         return self.first_name
+    def __str__(self):
+        return self.first_name
     
 
-# class Shipping(models.Model):
-#     country = models.CharField(max_length=100)
-#     first_name = models.CharField(max_length=100)
-#     last_name = models.CharField(max_length=100)
-#     company_name = models.CharField(max_length=100,null=True,blank=True)
-#     Address = models.CharField(max_length=100)
-#     city = models.CharField(max_length=100)
-#     state = models.CharField(max_length=100)
-#     zipcode = models.CharField(max_length=100)
-#     email = models.CharField(max_length=100)
-#     phone = models.CharField(max_length=100)
-
-#     def __str__(self):
-#         return self.first_name
     
 
-# class Order(models.Model):
-#     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-#     shipping = models.ForeignKey(Shipping, on_delete=models.CASCADE)
-#     product = models.ForeignKey(Products, on_delete=models.CASCADE)
-#     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     date = models.DateField( auto_now=False, auto_now_add=True)
-#     status = models.CharField(max_length=100,default="panding")
-#     pymentSystem = models.CharField(max_length=100,default="cashondelivery")
-#     ordernote = models.TextField()
+class Order(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date = models.DateField( auto_now=False, auto_now_add=True)
+    status = models.CharField(max_length=100,default="panding")
+    pymentSystem = models.CharField(max_length=100,default="Cash On Delivery")
+    total_order = models.PositiveIntegerField(blank=True, null=True)
+    ordernote = models.TextField()
 
-#     def __str__(self):
-#         return self.status
+    def __str__(self):
+        return self.customer.first_name , self.date
+
+
+class OrderItems(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def order_subtotal(self):
+        return self.quantity * self.product.price

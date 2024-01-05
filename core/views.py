@@ -66,6 +66,18 @@ def about(request):
         cart = Cart.objects.filter(user=request.user)
     return render(request,"core/about.html",{'navbar':'about','cart':cart})
 
+def contact_us(request):
+    cart = 0
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+    return render(request,"core/contact_us.html",{'navbar':'contact_us','cart':cart})
+
+def faq(request):
+    cart = 0
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+    return render(request,"core/faq.html",{'navbar':'faq','cart':cart})
+
 def cart(request):
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
@@ -107,12 +119,59 @@ def add_to_cart(request,id):
 
 def deleteCart(request,id):
     if request.user.is_authenticated:
-        print(id)
         cart = Cart.objects.get(Q(user=request.user,id=id))
-        print(cart)
         cart.delete()
         return redirect('cart')
 
+
+def checkout(request):
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        subtotal = get_subTotal(cart)
+        if request.method == "POST":
+            frist_name = request.POST.get("firstname")
+            last_name = request.POST.get("lastname")
+            company_name = request.POST.get("company-name")
+            country = request.POST.get("country-name")
+            address = request.POST.get("street")
+            city = request.POST.get("town")
+            zipcode = request.POST.get("zip")
+            state = request.POST.get("state")
+            phone = request.POST.get("phone")
+            email = request.POST.get("email")
+            customer = Customer(country=country,first_name=frist_name,last_name=last_name,company_name=company_name,Address=address,city=city,state=state,zipcode=zipcode,email=email,phone=phone,user=request.user)
+            customer.save()
+            # order press 
+            customer_ = Customer.objects.order_by("-id")[:1].get()
+            order = Order(customer=customer_, user=request.user, total_order=subtotal)
+            order.save()
+            order_ = Order.objects.order_by("-id")[:1].get()
+            for i in cart:
+                OrderItems(order=order_, product=i.product,
+                            quantity=i.quantity, user=request.user).save()
+            return redirect("orderpage",pk=order_.id)
+        return render(request,"core/checkout.html",locals())
+    else:
+        return redirect("login")
+
+
+def orderpage(request,pk):
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        order = Order.objects.get(user=request.user,id=pk)
+        orderitems = OrderItems.objects.filter(user=request.user,order=order)
+        return render(request,"core/order.html",locals())
+    else:
+        return redirect("login")
+
+def invoice(request,pk):
+    if request.user.is_authenticated:
+        cart = Cart.objects.filter(user=request.user)
+        order = Order.objects.get(user=request.user,id=pk)
+        orderitems = OrderItems.objects.filter(user=request.user,order=order)
+        return render(request,"core/invoice.html",locals())
+    else:
+        return redirect("login")
 
 
 # custom function 
