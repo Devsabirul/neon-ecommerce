@@ -57,7 +57,7 @@
                             {% for orderitem in orderitems %}
                                 <tr>
                                     <td class="center">{{forloop.counter}}</td>
-                                    <td class="left strong">orderitem.product.name</td>
+                                    <td class="left strong">{{orderitem.product.name}}</td>
 
                                     <td class="right">{{orderitem.product.price}} tk</td>
                                     <td class="center">{{orderitem.quantity}}</td>
@@ -68,8 +68,8 @@
                     </table>
                 </div>
                 <div class="row">
-                    <div class="col-7"></div>
-                    <div class="col-5">
+                    <div class="col-lg-7"></div>
+                    <div class="col-lg-5 col-md-6 col-sm-12">
                         <table class="table table-clear">
                             <tbody>
                                 <tr>

@@ -373,45 +373,46 @@
         </a>
         <div class="dropdown-box">
           <div class="products">
-            {% for cart in cart %}  
-              <div class="product product-cart">
-                <div class="product-detail">
-                  <h3 class="product-name">
-                    <a href="#">
-                      {{cart.product.name}}
-                      </a>
-                  </h3>
-                  <div class="price-box">
-                    <span class="product-quantity">{{cart.quantity}}</span>
-                    <span class="product-price">{{cart.product.price}} tk</span>
+            {% if request.user.is_authenticated %}
+              {% for cart in cart %}  
+                <div class="product product-cart">
+                  <div class="product-detail">
+                    <h3 class="product-name">
+                      <a href="#">
+                        {{cart.product.name}}
+                        </a>
+                    </h3>
+                    <div class="price-box">
+                      <span class="product-quantity">{{cart.quantity}}</span>
+                      <span class="product-price">{{cart.product.price}} tk</span>
+                    </div>
                   </div>
+                  <figure class="product-media">
+                    <a href="{% url 'product_details' cart.product.slug %}">
+                      <img
+                        src="{{cart.product.image.url}}"
+                        alt="product"
+                        height="84"
+                        width="94"
+                      />
+                    </a>
+                  </figure>
+                  <button class="btn btn-link btn-close" aria-label="button">
+                    <a href="{% url 'deleteCart' cart.id %}">
+                      <i class="fas fa-times"></i>
+                    </a>
+                  </button>
                 </div>
-                <figure class="product-media">
-                  <a href="{% url 'product_details' cart.product.slug %}">
-                    <img
-                      src="{{cart.product.image.url}}"
-                      alt="product"
-                      height="84"
-                      width="94"
-                    />
-                  </a>
-                </figure>
-                <button class="btn btn-link btn-close" aria-label="button">
-                  <a href="{% url 'deleteCart' cart.id %}">
-                    <i class="fas fa-times"></i>
-                  </a>
-                </button>
-              </div>
-            {% endfor %}
+              {% endfor %}
             
-
+            
           </div>
 
           <div class="cart-total">
             <label>Subtotal:</label>
             <span class="price">{{subtotal}}</span>
           </div>
-
+        {% endif %}
           <div class="cart-action">
             <a href="{% url 'cart' %}" class="btn btn-dark btn-outline btn-rounded"
               >View Cart</a
