@@ -101,9 +101,9 @@
               <a href="/" class="logo ml-lg-0">
                 <img src="{% static 'assets/images/logo.png' %}" alt="logo" width="144" height="45" />
               </a>
-              <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
+              <form method="get" action="{% url 'search_product' %}" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
                 <div class="select-box">
-                  <select id="category" name="category">
+                  <select id="category">
                     <option value="">All Categories</option>
                     <option value="4">Fashion</option>
                     <option value="5">Furniture</option>

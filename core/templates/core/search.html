@@ -1,0 +1,236 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Search Product{% endblock title %}
+{% block body %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.min.css' %}" />
+
+<!-- Start of Main -->
+<main class="main">
+    <!-- Start of Breadcrumb -->
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <ul class="breadcrumb bb-no">
+                <li><a href="{% url 'HOME' %}">Home</a></li>
+                <li><a href="{% url 'shop_page' %}">Shop</a></li>
+                <li>List</li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End of Breadcrumb -->
+
+    <!-- Start of Page Content -->
+    <div class="page-content mb-10">
+        <!-- Start of Shop Banner -->
+        <div class="shop-default-banner shop-boxed-banner banner d-flex align-items-center mb-6" style="
+          background-image: url({% static 'assets/images/shop/banner2.jpg' %});
+          background-color: #ffc74e;">
+
+            <div class="container banner-content">
+                <h4 class="banner-subtitle font-weight-bold">
+                    Accessories Collection
+                </h4>
+                <h3 class="banner-title text-white text-uppercase font-weight-bolder ls-10">
+                    Smart Watches
+                </h3>
+                <a href="#" class="btn btn-dark btn-rounded btn-icon-right">Discover Now<i
+                        class="w-icon-long-arrow-right"></i></a>
+            </div>
+        </div>
+        <!-- End of Shop Banner -->
+        <div class="container-fluid">
+            <!-- Start of Shop Content -->
+            <div class="shop-content">
+                <!-- Start of Sidebar, Shop Sidebar -->
+                <aside class="sidebar shop-sidebar left-sidebar sticky-sidebar-wrapper">
+                    <!-- Start of Sidebar Overlay -->
+                    <div class="sidebar-overlay"></div>
+                    <a class="sidebar-close" href="#"><i class="close-icon"></i></a>
+
+                    <!-- Start of Sidebar Content -->
+                    <div class="sidebar-content scrollable">
+                        <div class="filter-actions">
+                            <label>Filter :</label>
+                            <a href="#" class="btn btn-dark btn-link filter-clean">Clean All</a>
+                        </div>
+                        <!-- Start of Collapsible widget -->
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title"><span>All Categories</span></h3>
+                            <ul class="widget-body filter-items search-ul">
+                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">Babies</a></li>
+                                <li><a href="#">Beauty</a></li>
+                                <li><a href="#">Decoration</a></li>
+                                <li><a href="#">Electronics</a></li>
+                                <li><a href="#">Fashion</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="#">Furniture</a></li>
+                                <li><a href="#">Kitchen</a></li>
+                                <li><a href="#">Medical</a></li>
+                                <li><a href="#">Sports</a></li>
+                                <li><a href="#">Watches</a></li>
+                            </ul>
+                        </div>
+                        <!-- End of Collapsible Widget -->
+
+                        <!-- Start of Collapsible Widget -->
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title"><span>Price</span></h3>
+                            <div class="widget-body">
+                                <ul class="filter-items search-ul">
+                                    <li><a href="#">$0.00 - $100.00</a></li>
+                                    <li><a href="#">$100.00 - $200.00</a></li>
+                                    <li><a href="#">$200.00 - $300.00</a></li>
+                                    <li><a href="#">$300.00 - $500.00</a></li>
+                                    <li><a href="#">$500.00+</a></li>
+                                </ul>
+                                <form class="price-range">
+                                    <input type="number" name="min_price" class="min_price text-center"
+                                        placeholder="$min" /><span class="delimiter">-</span><input type="number"
+                                        name="max_price" class="max_price text-center" placeholder="$max" /><a href="#"
+                                        class="btn btn-primary btn-rounded">Go</a>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End of Collapsible Widget -->
+
+                        <!-- Start of Collapsible Widget -->
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title"><span>Size</span></h3>
+                            <ul class="widget-body filter-items item-check mt-1">
+                                <li><a href="#">Extra Large</a></li>
+                                <li><a href="#">Large</a></li>
+                                <li><a href="#">Medium</a></li>
+                                <li><a href="#">Small</a></li>
+                            </ul>
+                        </div>
+                        <!-- End of Collapsible Widget -->
+
+                        <!-- Start of Collapsible Widget -->
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title"><span>Brand</span></h3>
+                            <ul class="widget-body filter-items item-check mt-1">
+                                <li><a href="#">Elegant Auto Group</a></li>
+                                <li><a href="#">Green Grass</a></li>
+                                <li><a href="#">Node Js</a></li>
+                                <li><a href="#">NS8</a></li>
+                                <li><a href="#">Red</a></li>
+                                <li><a href="#">Skysuite Tech</a></li>
+                                <li><a href="#">Sterling</a></li>
+                            </ul>
+                        </div>
+                        <!-- End of Collapsible Widget -->
+
+                        <!-- Start of Collapsible Widget -->
+                        <div class="widget widget-collapsible">
+                            <h3 class="widget-title"><span>Color</span></h3>
+                            <ul class="widget-body filter-items item-check mt-1">
+                                <li><a href="#">Black</a></li>
+                                <li><a href="#">Blue</a></li>
+                                <li><a href="#">Brown</a></li>
+                                <li><a href="#">Green</a></li>
+                                <li><a href="#">Grey</a></li>
+                                <li><a href="#">Orange</a></li>
+                                <li><a href="#">Yellow</a></li>
+                            </ul>
+                        </div>
+                        <!-- End of Collapsible Widget -->
+                    </div>
+                    <!-- End of Sidebar Content -->
+                </aside>
+                <!-- End of Shop Sidebar -->
+
+                <!-- Start of Shop Main Content -->
+                <div class="main-content">
+                    <nav class="toolbox sticky-toolbox sticky-content fix-top">
+                        <div class="toolbox-left">
+                            <div class="toolbox-item toolbox-sort select-box text-dark">
+                                <label>Sort By :</label>
+                                <select name="orderby" class="form-control">
+                                    <option value="default" selected="selected">
+                                        Default sorting
+                                    </option>
+                                    <option value="popularity">Sort by popularity</option>
+                                    <option value="rating">Sort by average rating</option>
+                                    <option value="date">Sort by latest</option>
+                                    <option value="price-low">
+                                        Sort by pric: low to high
+                                    </option>
+                                    <option value="price-high">
+                                        Sort by price: high to low
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="toolbox-right">
+                            <div class="toolbox-item toolbox-show select-box">
+                                <select name="count" class="form-control">
+                                    <option value="9">Show 9</option>
+                                    <option value="12" selected="selected">Show 12</option>
+                                    <option value="24">Show 24</option>
+                                    <option value="36">Show 36</option>
+                                </select>
+                            </div>
+                            <div class="toolbox-item toolbox-layout">
+                                <a href="{% url 'shop_page' %}" class="icon-mode-grid btn-layout">
+                                    <i class="w-icon-grid"></i>
+                                </a>
+                                <a href="#" class="icon-mode-list btn-layout active">
+                                    <i class="w-icon-list"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="product-wrapper row cols-xl-2 cols-sm-1 cols-xs-2 cols-1">
+                        {% if products %}
+                        {% for product in products %}
+                            <div class="product product-list product-select">
+                                <figure class="product-media">
+                                    <a href="{% url 'product_details' product.slug %}">
+                                        <img src="{{product.image.url}}" alt="Product" width="330"
+                                            height="338" />
+                                    </a>
+                                </figure>
+                                <div class="product-details">
+                                    <h4 class="product-name">
+                                        <a href="{% url 'product_details' product.slug %}">{{product.name}}</a>
+                                    </h4>
+                                    <div class="ratings-container">
+                                        <div class="ratings-full">
+                                            <span class="ratings" style="width: 100%"></span>
+                                            <span class="tooltiptext tooltip-top"></span>
+                                        </div>
+                                        <a href="#" class="rating-reviews">(3 Reviews)</a>
+                                    </div>
+                                    <div class="product-price">BDT. {{product.price}}</div>
+                                    <div class="product-desc">
+                                        {{product.sort_description|truncatechars:105|safe}}
+                                    </div>
+                                    <div class="product-action">
+                                        <a href="{% url 'ADD_TO_CART' product.id %}" class="btn-product btn-cart"
+                                            title="Add to Cart"><i class="w-icon-cart"></i>Add To Cart</a>
+                                        <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                            title="Add to wishlist"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}        
+                        {% else %}
+                        <div class="col-12">
+                            <p class="text-center">
+                                Product not found!
+                            </p>
+                        </div>                
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- End of Shop Main Content -->
+            </div>
+            <!-- End of Shop Content -->
+        </div>
+    </div>
+    <!-- End of Page Content -->
+</main>
+<!-- End of Main -->
+
+{% endblock body %}

@@ -19,6 +19,7 @@ class Category(models.Model):
 class Products(models.Model):
     name = models.CharField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    brand = models.ImageField(upload_to="Brand Image",default="brands/category/1.png")
     sku = models.CharField(max_length=200)
     price = models.PositiveIntegerField()
     review = models.PositiveIntegerField(null=True,blank=True,default=0)
@@ -26,6 +27,9 @@ class Products(models.Model):
     slug = AutoSlugField(populate_from="name", null=True, unique=True)
     description = RichTextField()
     image = models.ImageField(upload_to="Product Image")
+    pdsliderimg1 = models.ImageField(upload_to="Slider Image",blank=True, null=True)
+    pdsliderimg2 = models.ImageField(upload_to="Slider Image",blank=True, null=True)
+    pdsliderimg3 = models.ImageField(upload_to="Slider Image",blank=True, null=True)
 
 
     def __str__(self):
@@ -71,8 +75,6 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.first_name
-    
-
     
 
 class Order(models.Model):

@@ -31,12 +31,24 @@ def shop_page(request):
     }
     return render(request,"core/shop.html",context)
 
+
+def search_product(request):
+    products = Products.objects.filter(name__icontains=request.GET.get('search'))
+    print(products)
+    return render(request,"core/search.html",locals())
+
+
 def product_details(request,slug):
     cart = 0
+    cart_quantity = 1
+    product = Products.objects.get(slug=slug)
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
-        cart_quantity = Cart.objects.get(user=request.user,product__slug=slug)
-        
+        try:
+            cart_quantity = Cart.objects.get(user=request.user,product__slug=slug)
+            cart_quantity = cart_quantity.quantity
+        except Cart.DoesNotExist:
+            cart_quantity = 1
         if request.method == "POST":
             productid = request.POST.get('productId')
             quantitys = request.POST.get('quantity')
@@ -51,7 +63,6 @@ def product_details(request,slug):
                 except Cart.DoesNotExist:
                     Cart(user=request.user,product=product,quantity=quantity_).save()
                 return JsonResponse({'status': 'success'})
-    product = Products.objects.get(slug=slug)
     context = {
         'navbar':'shop',
         'product':product,
