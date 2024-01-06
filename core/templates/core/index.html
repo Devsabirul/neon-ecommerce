@@ -711,21 +711,7 @@
             class="w-icon-long-arrow-right"></i></a>
       </div>
       <div class="row">
-        <div class="col-lg-12 col-sm-12">
-          <div class="swiper-container swiper-theme" data-swiper-options="{
-                            'spaceBetween': 20,
-                            'slidesPerView': 2,
-                            'breakpoints': {
-                                '992': {
-                                    'slidesPerView': 3
-                                },
-                                '1200': {
-                                    'slidesPerView': 4
-                                }
-                            }
-                        }">
-            <div class="swiper-wrapper row cols-xl-4 cols-lg-3 cols-2">
-              <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
+        <div class="col-lg-3 col-sm-12">
                 {% for product in products %}
                 {% if product.category.name == "kidscorner" %}
                   <div class="product-wrap">
@@ -761,12 +747,7 @@
                       </div>
                     </div>
                 {% endif %}
-                
                 {% endfor %}
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
         </div>
       </div>
     </div>

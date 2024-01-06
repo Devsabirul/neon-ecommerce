@@ -23,6 +23,13 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.name
     
+class SubSubCategory(models.Model):
+    name = models.CharField(max_length=100,blank=True, null=True)
+    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    
 
 
 
@@ -30,6 +37,7 @@ class Products(models.Model):
     name = models.CharField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE,blank=True, null=True)
+    sub_sub_category = models.ForeignKey(SubSubCategory, on_delete=models.CASCADE,blank=True, null=True)
     brand = models.ImageField(upload_to="Brand Image",default="brands/category/1.png")
     sku = models.CharField(max_length=200)
     price = models.PositiveIntegerField()
