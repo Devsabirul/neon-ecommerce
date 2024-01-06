@@ -16,9 +16,20 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
 
+class SubCategory(models.Model):
+    name = models.CharField(max_length=100,blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+    
+
+
+
 class Products(models.Model):
     name = models.CharField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    subcategory = models.ForeignKey(SubCategory,on_delete=models.CASCADE,blank=True, null=True)
     brand = models.ImageField(upload_to="Brand Image",default="brands/category/1.png")
     sku = models.CharField(max_length=200)
     price = models.PositiveIntegerField()
@@ -87,7 +98,7 @@ class Order(models.Model):
     ordernote = models.TextField()
 
     def __str__(self):
-        return self.customer.first_name , self.date
+        return self.customer.first_name
 
 
 class OrderItems(models.Model):
