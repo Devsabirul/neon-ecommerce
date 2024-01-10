@@ -10,11 +10,67 @@ def home(request):
         cart = Cart.objects.filter(user=request.user)
     popularpd = PopularDepartMents.objects.all()
     products = Products.objects.order_by("-id")
+    sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
+
     context = {
         'navbar':'home',
         'popularDepartment':popularpd,
         'cart':cart,
-        'products':products
+        'products':products,
+        'sub_sub_category':sub_sub_category,
+        'sub_category':sub_category,
+        'home_garden':home_garden,
+        'electronics':electronics,
+        'fashion':fashion,
+        'furniture':furniture,
+        'healthy_beauty':healthy_beauty,
+        'gift_ideas':gift_ideas,
+        'cooking':cooking,
+        'smart_phones':smart_phones,
+        'cameras_photo':cameras_photo,
+        'accessories':accessories,
+        'toy_games':toy_games,
     }
     return render(request,'core/index.html',context)
 
@@ -24,10 +80,67 @@ def shop_page(request):
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
     products = Products.objects.order_by("-id")
+    sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
+
+
     context = {
         'navbar':'shop',
         'products':products,
-        'cart':cart
+        'cart':cart,
+        'sub_sub_category':sub_sub_category,
+        'sub_category':sub_category,
+        'home_garden':home_garden,
+        'electronics':electronics,
+        'fashion':fashion,
+        'furniture':furniture,
+        'healthy_beauty':healthy_beauty,
+        'gift_ideas':gift_ideas,
+        'cooking':cooking,
+        'smart_phones':smart_phones,
+        'cameras_photo':cameras_photo,
+        'accessories':accessories,
+        'toy_games':toy_games,
     }
     return render(request,"core/shop.html",context)
 
@@ -35,6 +148,49 @@ def shop_page(request):
 def search_product(request):
     products = Products.objects.filter(name__icontains=request.GET.get('search'))
     print(products)
+
+    sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
     return render(request,"core/search.html",locals())
 
 
@@ -63,11 +219,67 @@ def product_details(request,slug):
                 except Cart.DoesNotExist:
                     Cart(user=request.user,product=product,quantity=quantity_).save()
                 return JsonResponse({'status': 'success'})
+
+    sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
     context = {
         'navbar':'shop',
         'product':product,
         'cart':cart,
-        'cart_quantity':cart_quantity
+        'cart_quantity':cart_quantity,
+        'sub_sub_category':sub_sub_category,
+        'sub_category':sub_category,
+        'home_garden':home_garden,
+        'electronics':electronics,
+        'fashion':fashion,
+        'furniture':furniture,
+        'healthy_beauty':healthy_beauty,
+        'gift_ideas':gift_ideas,
+        'cooking':cooking,
+        'smart_phones':smart_phones,
+        'cameras_photo':cameras_photo,
+        'accessories':accessories,
+        'toy_games':toy_games,
     }
     return render(request,"core/product_details.html",context)
 
@@ -75,19 +287,201 @@ def about(request):
     cart = 0
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
-    return render(request,"core/about.html",{'navbar':'about','cart':cart})
+    
+    sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
+    context = {
+        'navbar':'about',
+        'cart':cart,
+        'sub_sub_category':sub_sub_category,
+        'sub_category':sub_category,
+        'home_garden':home_garden,
+        'electronics':electronics,
+        'fashion':fashion,
+        'furniture':furniture,
+        'healthy_beauty':healthy_beauty,
+        'gift_ideas':gift_ideas,
+        'cooking':cooking,
+        'smart_phones':smart_phones,
+        'cameras_photo':cameras_photo,
+        'accessories':accessories,
+        'toy_games':toy_games,
+    }
+
+    return render(request,"core/about.html",context)
 
 def contact_us(request):
     cart = 0
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
-    return render(request,"core/contact_us.html",{'navbar':'contact_us','cart':cart})
+    
+    sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
+    context = {
+        'navbar':'contact_us',
+        'cart':cart,
+        'sub_sub_category':sub_sub_category,
+        'sub_category':sub_category,
+        'home_garden':home_garden,
+        'electronics':electronics,
+        'fashion':fashion,
+        'furniture':furniture,
+        'healthy_beauty':healthy_beauty,
+        'gift_ideas':gift_ideas,
+        'cooking':cooking,
+        'smart_phones':smart_phones,
+        'cameras_photo':cameras_photo,
+        'accessories':accessories,
+        'toy_games':toy_games,
+
+    }
+    return render(request,"core/contact_us.html",context)
 
 def faq(request):
     cart = 0
     if request.user.is_authenticated:
         cart = Cart.objects.filter(user=request.user)
-    return render(request,"core/faq.html",{'navbar':'faq','cart':cart})
+
+    sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
+    context = {
+        'navbar':'faq',
+        'cart':cart,
+        'sub_sub_category':sub_sub_category,
+        'sub_category':sub_category,
+        'home_garden':home_garden,
+        'electronics':electronics,
+        'fashion':fashion,
+        'furniture':furniture,
+        'healthy_beauty':healthy_beauty,
+        'gift_ideas':gift_ideas,
+        'cooking':cooking,
+        'smart_phones':smart_phones,
+        'cameras_photo':cameras_photo,
+        'accessories':accessories,
+        'toy_games':toy_games,
+    }
+    return render(request,"core/faq.html",context)
 
 def cart(request):
     if request.user.is_authenticated:
@@ -109,6 +503,48 @@ def cart(request):
                 except Cart.DoesNotExist:
                     Cart(user=request.user,product=product,quantity=quantity_).save()
                 return JsonResponse({'status': 'success'})
+
+    sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
 
         return render(request,"core/cart.html",locals())
     else:
@@ -161,6 +597,50 @@ def checkout(request):
                 OrderItems(order=order_, product=i.product,
                             quantity=i.quantity, user=request.user).save()
             return redirect("orderpage",pk=order_.id)
+
+    sub_sub_category = SubSubCategory.objects.all()
+
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
         return render(request,"core/checkout.html",locals())
     else:
         return redirect("login")
@@ -171,6 +651,49 @@ def orderpage(request,pk):
         cart = Cart.objects.filter(user=request.user)
         order = Order.objects.get(user=request.user,id=pk)
         orderitems = OrderItems.objects.filter(user=request.user,order=order)
+
+        sub_sub_category = SubSubCategory.objects.all()
+    sub_category = SubCategory.objects.all()
+    category = Category.objects.all()
+
+    home_garden = []
+    electronics = []
+    fashion = []
+    furniture = []
+    healthy_beauty = []
+    gift_ideas = []
+    toy_games = []
+    cooking = []
+    smart_phones = []
+    cameras_photo = []
+    accessories = []
+
+
+    for i in sub_category:
+        if i.category.filtername == "home_&_garden":
+            home_garden.append(i.name)
+            print(i.name)
+        elif i.category.filtername == "electronics":
+            electronics.append(i.name)
+        elif i.category.filtername == "fashion":
+            fashion.append(i.name)
+        elif i.category.filtername == "furniture":
+            furniture.append(i.name)
+        elif i.category.filtername == "healthy_&_beauty":
+            healthy_beauty.append(i.name)
+        elif i.category.filtername == "gift_ideas":
+            gift_ideas.append(i.name)
+        elif i.category.filtername == "toy_&_games":
+            toy_games.append(i.name)
+        elif i.category.filtername == "cooking":
+            cooking.append(i.name)
+        elif i.category.filtername == "smart_phones":
+            smart_phones.append(i.name)
+        elif i.category.filtername == "cameras_&_photo":
+            cameras_photo.append(i.name)
+        elif i.category.filtername == "accessories":
+            accessories.append(i.name)
+
         return render(request,"core/order.html",locals())
     else:
         return redirect("login")

@@ -162,56 +162,177 @@
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-tshirt2"></i>Fashion
                         </a>
+                        {% if fashion %}
+                          <ul>
+                            {% for i in fashion %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-home"></i>Home & Garden
-                        </a>
+                        </a>    
+                        {% if home_garden %}
+                          <ul>
+                            {% for i in home_garden %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-electronics"></i>Electronics
                         </a>
+                        {% if electronics %}
+                          <ul>
+                            {% for i in electronics %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-furniture"></i>Furniture
                         </a>
+                        {% if furniture %}
+                          <ul>
+                            {% for i in furniture %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-heartbeat"></i>Healthy & Beauty
                         </a>
+                        {% if healthy_beauty %}
+                          <ul>
+                            {% for i in healthy_beauty %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-gift"></i>Gift Ideas
                         </a>
+                        {% if gift_ideas %}
+                          <ul>
+                            {% for i in gift_ideas %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-gamepad"></i>Toy & Games
                         </a>
+                        {% if toy_games %}
+                          <ul>
+                            {% for i in toy_games %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-ice-cream"></i>Cooking
                         </a>
+                        {% if cooking %}
+                          <ul>
+                            {% for i in cooking %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-ios"></i>Smart Phones
                         </a>
+                        {% if smart_phones %}
+                          <ul>
+                            {% for i in smart_phones %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-camera"></i>Cameras & Photo
                         </a>
+                        {% if cameras_photo %}
+                          <ul>
+                            {% for i in cameras_photo %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                       <li>
                         <a href="{% url 'shop_page' %}">
                           <i class="w-icon-ruby"></i>Accessories
                         </a>
+                        {% if accessories %}
+                          <ul>
+                            {% for i in accessories %}
+                              <li>
+                                <a href="{% url 'shop_page' %}">
+                                  {{i|capfirst}}
+                                </a>
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
                       </li>
                     </ul>
                   </div>

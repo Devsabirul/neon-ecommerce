@@ -533,7 +533,7 @@
         <div class="tab-pane active pt-4" id="tab2-1">
           <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
             {% for product in products|slice:":15" %}
-            {% if product.category.name == "womenfashion" %}
+            {% if product.subcategory.filtername == "women_fashion" %}
               <div class="product-wrap">
                   <div class="product text-center">
                     <figure class="product-media">
@@ -574,7 +574,7 @@
         <div class="tab-pane pt-4" id="tab2-2">
           <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
             {% for product in products %}
-              {% if product.subcategory.name == "watch" and product.category.name == "womenfashion" %}
+              {% if product.sub_sub_category.name == "watch" and product.subcategory.filtername == "women_fashion" %}
                   <div class="product-wrap">
                     <div class="product text-center">
                       <figure class="product-media">
@@ -618,7 +618,7 @@
           <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
 
             {% for product in products %}
-              {% if product.subcategory.name == "shoes" and product.category.name == "womenfashion" %}
+              {% if product.sub_sub_category.name == "shoes" and product.subcategory.filtername == "women_fashion" %}
                   <div class="product-wrap">
                     <div class="product text-center">
                       <figure class="product-media">
@@ -661,7 +661,7 @@
           <div class="row cols-xl-5 cols-md-4 cols-sm-3 cols-2">
 
             {% for product in products %}
-              {% if product.subcategory.name == "clothing" and product.category.name == "womenfashion" %}
+              {% if product.sub_sub_category.name == "clothing" and product.subcategory.filtername == "women_fashion" %}
                   <div class="product-wrap">
                     <div class="product text-center">
                       <figure class="product-media">

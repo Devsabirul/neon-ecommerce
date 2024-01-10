@@ -6,29 +6,45 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=500)
+    filtername = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.name
-    
 
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
+        self.name = self.name.strip()
+        self.filtername = self.name.replace(' ', '_') 
         super().save(*args, **kwargs)
 
 
 class SubCategory(models.Model):
     name = models.CharField(max_length=100,blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    filtername = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        self.name = self.name.strip()
+        self.filtername = self.name.replace(' ', '_') 
+        super().save(*args, **kwargs)
     
 class SubSubCategory(models.Model):
     name = models.CharField(max_length=100,blank=True, null=True)
     subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE)
-
+    filtername = models.CharField(max_length=500, blank=True, null=True)
+    
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        self.name = self.name.strip()
+        self.filtername = self.name.replace(' ', '_') 
+        super().save(*args, **kwargs)
     
 
 
