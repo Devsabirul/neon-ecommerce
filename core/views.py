@@ -30,7 +30,6 @@ def home(request):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -51,6 +50,7 @@ def home(request):
             cameras_photo.append(i.name)
         elif i.category.filtername == "accessories":
             accessories.append(i.name)
+
 
 
     context = {
@@ -83,6 +83,19 @@ def shop_page(request):
     sub_sub_category = SubSubCategory.objects.all()
     sub_category = SubCategory.objects.all()
     category = Category.objects.all()
+    category_ = request.GET.get("category")
+    sub_category_ = request.GET.get("subcategory")
+    category_product = []
+    is_product = True
+    
+
+    if category_ != None:
+        category_product = Products.objects.filter(category__filtername=category_)
+        is_product = False
+    
+    if sub_category_ != None:
+        category_product = Products.objects.filter(subcategory__name=sub_category_) 
+        is_product = False
 
     home_garden = []
     electronics = []
@@ -100,7 +113,6 @@ def shop_page(request):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -122,8 +134,6 @@ def shop_page(request):
         elif i.category.filtername == "accessories":
             accessories.append(i.name)
 
-
-
     context = {
         'navbar':'shop',
         'products':products,
@@ -141,13 +151,14 @@ def shop_page(request):
         'cameras_photo':cameras_photo,
         'accessories':accessories,
         'toy_games':toy_games,
+        'category_product':category_product,
+        'is_product':is_product
     }
     return render(request,"core/shop.html",context)
 
 
 def search_product(request):
     products = Products.objects.filter(name__icontains=request.GET.get('search'))
-    print(products)
 
     sub_sub_category = SubSubCategory.objects.all()
     sub_category = SubCategory.objects.all()
@@ -169,7 +180,6 @@ def search_product(request):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -240,7 +250,6 @@ def product_details(request,slug):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -308,7 +317,6 @@ def about(request):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -375,7 +383,6 @@ def contact_us(request):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -442,7 +449,6 @@ def faq(request):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -524,7 +530,6 @@ def cart(request):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -619,7 +624,6 @@ def checkout(request):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":
@@ -672,7 +676,6 @@ def orderpage(request,pk):
     for i in sub_category:
         if i.category.filtername == "home_&_garden":
             home_garden.append(i.name)
-            print(i.name)
         elif i.category.filtername == "electronics":
             electronics.append(i.name)
         elif i.category.filtername == "fashion":

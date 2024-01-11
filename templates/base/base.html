@@ -155,18 +155,17 @@
                     <i class="w-icon-category"></i>
                     <span>Browse Categories</span>
                   </a>
-  
                   <div class="dropdown-box">
                     <ul class="menu vertical-menu category-menu">
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=fashion">
                           <i class="w-icon-tshirt2"></i>Fashion
                         </a>
                         {% if fashion %}
                           <ul>
                             {% for i in fashion %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -175,14 +174,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=home_%26_garden">
                           <i class="w-icon-home"></i>Home & Garden
                         </a>    
                         {% if home_garden %}
                           <ul>
                             {% for i in home_garden %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -191,14 +190,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=electronics">
                           <i class="w-icon-electronics"></i>Electronics
                         </a>
                         {% if electronics %}
                           <ul>
                             {% for i in electronics %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -207,14 +206,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=furniture">
                           <i class="w-icon-furniture"></i>Furniture
                         </a>
                         {% if furniture %}
                           <ul>
                             {% for i in furniture %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -223,14 +222,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=healthy_%26_beauty">
                           <i class="w-icon-heartbeat"></i>Healthy & Beauty
                         </a>
                         {% if healthy_beauty %}
                           <ul>
                             {% for i in healthy_beauty %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -239,14 +238,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=gift_ideas">
                           <i class="w-icon-gift"></i>Gift Ideas
                         </a>
                         {% if gift_ideas %}
                           <ul>
                             {% for i in gift_ideas %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -255,14 +254,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=toy_%26_games">
                           <i class="w-icon-gamepad"></i>Toy & Games
                         </a>
                         {% if toy_games %}
                           <ul>
                             {% for i in toy_games %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -271,14 +270,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=cooking">
                           <i class="w-icon-ice-cream"></i>Cooking
                         </a>
                         {% if cooking %}
                           <ul>
                             {% for i in cooking %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -287,14 +286,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=smart_phones">
                           <i class="w-icon-ios"></i>Smart Phones
                         </a>
                         {% if smart_phones %}
                           <ul>
                             {% for i in smart_phones %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -303,14 +302,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=cameras_%26_photo">
                           <i class="w-icon-camera"></i>Cameras & Photo
                         </a>
                         {% if cameras_photo %}
                           <ul>
                             {% for i in cameras_photo %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -319,14 +318,14 @@
                         {% endif %}
                       </li>
                       <li>
-                        <a href="{% url 'shop_page' %}">
+                        <a href="{% url 'shop_page' %}?category=accessories">
                           <i class="w-icon-ruby"></i>Accessories
                         </a>
                         {% if accessories %}
                           <ul>
                             {% for i in accessories %}
                               <li>
-                                <a href="{% url 'shop_page' %}">
+                                <a href="{% url 'shop_page' %}?subcategory={{i}}">
                                   {{i|capfirst}}
                                 </a>
                               </li>
@@ -338,7 +337,6 @@
                   </div>
                 </div>
               </div>
-  
               <div class="header-right">
                 <nav class="main-nav">
                   <ul class="menu active-underline">
