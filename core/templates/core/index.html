@@ -502,7 +502,7 @@
             align-items: center;
           " class="title ls-normal mb-4 mt-10 pt-1 appear-animate">
         WOMEN FASHION
-        <a href="{% url 'shop_page' %}" style="
+        <a href="{% url 'shop_page' %}?subcategory=women fashion" style="
               border: 1px solid #336696;
               color: #336696;
               padding: 8px 12px;
@@ -707,13 +707,13 @@
     <div class="product-wrapper-1 appear-animate mb-5">
       <div class="title-link-wrapper pb-1 mb-4">
         <h2 class="title ls-normal mb-0">KIDS CORNER</h2>
-        <a href="{% url 'shop_page' %}" class="font-size-normal font-weight-bold ls-25 mb-0">More Products<i
+        <a href="{% url 'shop_page' %}?category=kids_corner" class="font-size-normal font-weight-bold ls-25 mb-0">More Products<i
             class="w-icon-long-arrow-right"></i></a>
       </div>
       <div class="row">
         <div class="col-lg-3 col-sm-12">
                 {% for product in products %}
-                {% if product.category.name == "kidscorner" %}
+                {% if product.category.filtername == "kids_corner" %}
                   <div class="product-wrap">
                       <div class="product text-center">
                         <figure class="product-media">
