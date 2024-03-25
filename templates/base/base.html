@@ -85,6 +85,12 @@
     <!-- Default CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/demo1.min.css' %}" />
 
+    <style>
+      a.cart.label-down.link:after {
+        display: none;
+      }
+    </style>
+
   </head>
 
   <body class="home">
@@ -142,7 +148,7 @@
               </form>
             </div>
             <div class="header-right ml-4">
-              <a class="wishlist label-down link d-xs-show" href="#">
+              <a class="wishlist label-down link d-xs-show" href="{% url 'wishlist' %}">
                 <i class="w-icon-heart"></i>
                 <span class="wishlist-label d-lg-show">Wishlist</span>
               </a>
@@ -157,7 +163,6 @@
                   </i>
                   <span class="cart-label">Cart</span>
                 </a>
-                
               </div>
             </div>
           </div>
@@ -368,6 +373,13 @@
                     <li  class="{% if navbar == 'about'  %}active{% endif %}">
                       <a href="{% url 'about' %}">About us</a>
                     </li>
+
+                    <li class="{% if navbar == 'checkout'  %}active{% endif %}">
+                      <a href="{% url 'checkout' %}">Checkout</a>
+                    </li>
+                    <li class="{% if navbar == 'wishlist'  %}active{% endif %}">
+                      <a href="{% url 'wishlist' %}">Wishlist</a>
+                    </li>
   
                     <li  class="{% if navbar == 'contact_us'  %}active{% endif %}">
                       <a href="{% url 'contact_us' %}">Contact Us</a>
@@ -444,10 +456,10 @@
                     Company
                   </h3>
                   <ul class="widget-body">
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
                     <li><a href="#">Team Member</a></li>
                     <li><a href="#">Career</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
                   </ul>
                 </div>
               </div>
@@ -457,7 +469,7 @@
                     My Account
                   </h4>
                   <ul class="widget-body">
-                    <li><a href="#">View Cart</a></li>
+                    <li><a href="{% url 'cart' %}">View Cart</a></li>
                     <li><a href="{% url 'login' %}">Sign In</a></li>
                     <li><a href="#">Help</a></li>
                   </ul>
@@ -555,7 +567,7 @@
             <a href="{% url 'cart' %}" class="btn btn-dark btn-outline btn-rounded"
               >View Cart</a
             >
-            <a href="#" class="btn btn-primary btn-rounded"
+            <a href="{% url 'checkout' %}" class="btn btn-primary btn-rounded"
               >Checkout</a
             >
           </div>
@@ -645,7 +657,7 @@
               </li>
 
               <li>
-                <a href="#">Contact Us</a>
+                <a href="{% url 'contact_us' %}">Contact Us</a>
               </li>
 
               <li>
@@ -656,7 +668,7 @@
                 <a href="{% url 'my_account' %}">My Account</a>
               </li>
               <li>
-                <a href="#">FAQ</a>
+                <a href="{% url 'faq' %}">FAQ</a>
               </li>
             </ul>
           </div>

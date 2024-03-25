@@ -191,7 +191,7 @@
               </div>
               <p class="mb-4">No downloads available yet.</p>
               <a
-                href="shop-fullwidth-banner.html"
+                href="{% url 'shop_page' %}"
                 class="btn btn-dark btn-rounded btn-icon-right"
                 >Go Shop<i class="w-icon-long-arrow-right"></i
               ></a>
@@ -364,7 +364,7 @@
                     id="display-name"
                     name="display_name"
                     class="form-control form-control-md mb-0"
-                    value="{{request.user.first_name}} {{request.user.first_name}}"
+                    value="{{request.user.first_name}} {{request.user.last_name}}"
                   />
                   <p>
                     This will be how your name will be displayed in the
@@ -379,6 +379,7 @@
                     id="email_1"
                     name="email_1"
                     class="form-control form-control-md"
+                    value="{{request.user.email}}"
                   />
                 </div>
 

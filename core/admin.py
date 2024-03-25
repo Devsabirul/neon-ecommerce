@@ -30,5 +30,5 @@ admin.site.register(SubSubCategory, SubSubCategoryAdmin)
 
 
 admin.site.register([Products,PopularDepartMents])
-admin.site.register(Cart)
+admin.site.register([Cart,Wishlist])
 admin.site.register([Customer,Order,OrderItems])

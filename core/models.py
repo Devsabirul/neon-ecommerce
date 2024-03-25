@@ -46,9 +46,6 @@ class SubSubCategory(models.Model):
         self.name = self.name.strip()
         self.filtername = self.name.replace(' ', '_') 
         super().save(*args, **kwargs)
-    
-
-
 
 class Products(models.Model):
     name = models.CharField(max_length=500)
@@ -58,6 +55,7 @@ class Products(models.Model):
     brand = models.ImageField(upload_to="Brand Image",default="brands/category/1.png")
     sku = models.CharField(max_length=200)
     price = models.PositiveIntegerField()
+    stock_status = models.CharField(max_length=100,null=True,blank=True,default="In Stock")
     review = models.PositiveIntegerField(null=True,blank=True,default=0)
     sort_description = RichTextField()
     slug = AutoSlugField(populate_from="name", null=True, unique=True)
@@ -94,6 +92,16 @@ class Cart(models.Model):
 
     def line_total(self):
         return self.quantity * self.product.price
+
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products,  on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.product.name
+    
 
 
 class Customer(models.Model):

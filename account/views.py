@@ -54,7 +54,6 @@ def my_account(request):
         cart = Cart.objects.filter(user=request.user)
         orders = Order.objects.filter(user=request.user)
         customer = Customer.objects.filter(user=request.user).last()
-        print(customer)
         context ={
             'navbar':'my_account',
             'cart':cart,

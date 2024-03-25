@@ -58,7 +58,7 @@
                   </a>
                 </td>
                 <td class="product-price">
-                  <span class="amount">{{cart.product.price}} tk</span>
+                  <span class="amount">৳ {{cart.product.price}} tk</span>
                 </td>
                 <td class="product-quantity">
                   <div class="input-group">
@@ -69,7 +69,7 @@
                   </div>
                 </td>
                 <td class="product-subtotal">
-                  <span class="amount">{{cart.line_total}} tk</span>
+                  <span class="amount">৳ {{cart.line_total}}</span>
                 </td>
               </tr>
               {% endfor %}
@@ -107,7 +107,7 @@
               <h3 class="cart-title text-uppercase">Cart Totals</h3>
               <div class="cart-subtotal d-flex align-items-center justify-content-between">
                 <label class="ls-25">Subtotal</label>
-                <span>{{subtotal}} tk</span>
+                <span>৳ {{subtotal}}</span>
               </div>
 
               <hr class="divider" />
@@ -133,9 +133,9 @@
               <hr class="divider mb-6" />
               <div class="order-total d-flex justify-content-between align-items-center">
                 <label>Total</label>
-                <span class="ls-50">{{subtotal}} tk</span>
+                <span class="ls-50">৳ {{subtotal}}</span>
               </div>
-              <a href="{% if cart %}{% url 'checkout' %}{% endif %} {% url 'shop_page' %} " class="btn btn-block btn-dark btn-icon-right btn-rounded btn-checkout">
+              <a href="{% if cart %}{% url 'checkout' %} {% else%} {% url 'shop_page' %} {% endif %}" class="btn btn-block btn-dark btn-icon-right btn-rounded btn-checkout">
                 Proceed to checkout<i class="w-icon-long-arrow-right"></i></a>
             </div>
           </div>
