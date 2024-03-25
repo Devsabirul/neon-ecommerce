@@ -15400,7 +15400,7 @@ body .product-popup {
 .dropdown > a::after {
   display: inline-block;
   margin-left: 6px;
-  content: "";
+  content: "";
   font-family: "Font Awesome 5 Free";
   font-size: 8px;
   font-weight: 900;
@@ -19920,7 +19920,7 @@ body .product-popup {
   color: #666;
 }
 .product-tabs .product-video img {
-  min-height: 20rem;
+  max-height: 36rem;
 }
 
 #product-tab-description .sub-title {

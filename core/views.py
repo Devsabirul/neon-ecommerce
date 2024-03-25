@@ -71,6 +71,7 @@ def home(request):
         'cameras_photo':cameras_photo,
         'accessories':accessories,
         'toy_games':toy_games,
+        'category':category
     }
     return render(request,'core/index.html',context)
 

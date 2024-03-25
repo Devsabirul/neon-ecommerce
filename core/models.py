@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=500)
+    category_img = models.ImageField(upload_to="Category Image",null=True,blank=True)
     filtername = models.CharField(max_length=500, blank=True, null=True)
 
     def __str__(self):
